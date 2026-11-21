@@ -7,13 +7,14 @@
   <meta name="robots" content="noindex">
   <title>Para ti, mi amor</title>
   <meta name="theme-color" content="#120c22">
-  <link rel="stylesheet" href="style.css?v=3">
-  <script src="script.js?v=3" defer></script>
+  <link rel="stylesheet" href="style.css?v=4">
+  <script src="script.js?v=4" defer></script>
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="#">Tú y yo <span aria-hidden="true">♥</span></a>
     <nav aria-label="Secciones">
+      <a href="#mundo">Mundo</a>
       <a href="#recuerdos">Álbum</a>
       <a href="#memorama">Memorama</a>
       <a href="#musica">Música</a>
@@ -27,7 +28,8 @@
         <p class="message">Solo quería recordarte lo mucho que te amo y lo orgulloso que estoy de ti.</p>
         <div class="cover-actions">
           <button type="button" id="open-letter" aria-controls="letter" aria-expanded="false">Abre mi cartita <span aria-hidden="true">♥</span></button>
-          <a href="#musica">♫ Escuchar nuestra canción</a>
+          <button type="button" id="cover-music">♫ Poner nuestra canción</button>
+          <a href="#mundo">Explorar nuestro mundo</a>
         </div>
       </div>
       <div class="cover-scene">
@@ -49,6 +51,21 @@
       <p>Hoy me dieron ganas de hacerte un detalle solo porque sí. Quiero que tengas un lugarcito al que puedas volver cuando quieras acordarte de lo mucho que te quiero.</p>
       <p>Estoy muy orgulloso de ti, de todo lo que haces y de la persona que eres. Me encanta estar a tu lado y poder decir que eres mi novia.</p>
       <p class="signature">Te amo, mi vida. <span aria-hidden="true">♥</span></p>
+    </section>
+    <section class="world" id="mundo" aria-labelledby="world-title">
+      <div class="world-backdrop" id="world-backdrop" aria-hidden="true"></div>
+      <div class="world-heading">
+        <h2 id="world-title">Nuestro pequeño mundo</h2>
+        <p>Arrastra el planeta para girarlo o usa los botones.</p>
+      </div>
+      <div class="world-stage" id="world-stage" aria-hidden="true">
+        <div class="world-planet" id="world-planet"></div>
+      </div>
+      <div class="world-controls">
+        <button type="button" id="world-left" aria-label="Girar a la izquierda">↶</button>
+        <button type="button" id="world-toggle" aria-pressed="false">Pausar giro</button>
+        <button type="button" id="world-right" aria-label="Girar a la derecha">↷</button>
+      </div>
     </section>
     <section class="music" id="musica" aria-labelledby="music-title">
       <div>

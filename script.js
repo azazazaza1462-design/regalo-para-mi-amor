@@ -75,18 +75,126 @@ document.querySelectorAll('.tilt, .gallery-grid a').forEach((card) => {
 });
 
 const playMusic = document.querySelector('#play-music');
-playMusic.addEventListener('click', () => {
+const coverMusic = document.querySelector('#cover-music');
+const musicPlayer = document.querySelector('#music-player');
+
+function startMusic(focusPlayer) {
   const frame = document.createElement('iframe');
   frame.title = 'The Fray — You Found Me (video oficial de YouTube)';
   frame.allow = 'autoplay; encrypted-media; picture-in-picture';
   frame.allowFullscreen = true;
   frame.src = 'https://www.youtube.com/embed/jFg_8u87zT0?autoplay=1&playsinline=1&loop=1&playlist=jFg_8u87zT0';
-  const player = document.querySelector('#music-player');
-  player.hidden = false;
-  player.replaceChildren(frame);
+  musicPlayer.hidden = false;
+  musicPlayer.replaceChildren(frame);
   playMusic.hidden = true;
-  frame.focus();
-}, { once: true });
+  coverMusic.textContent = '♫ Detener nuestra canción';
+  if (focusPlayer) frame.focus();
+}
+
+playMusic.addEventListener('click', () => startMusic(true));
+coverMusic.addEventListener('click', () => {
+  if (musicPlayer.hidden) {
+    startMusic(false);
+    return;
+  }
+  musicPlayer.replaceChildren();
+  musicPlayer.hidden = true;
+  playMusic.hidden = false;
+  coverMusic.textContent = '♫ Poner nuestra canción';
+});
+
+const worldStage = document.querySelector('#world-stage');
+const worldPlanet = document.querySelector('#world-planet');
+const worldToggle = document.querySelector('#world-toggle');
+const worldBackdrop = document.querySelector('#world-backdrop');
+const rows = [4, 8, 8, 4];
+let worldPhoto = 0;
+
+rows.forEach((count, row) => {
+  for (let column = 0; column < count; column += 1) {
+    const photo = photos[worldPhoto++];
+    const tile = document.createElement('img');
+    tile.src = photo.href;
+    tile.alt = '';
+    tile.loading = 'lazy';
+    tile.decoding = 'async';
+    worldBackdrop.append(tile);
+
+    const panel = tile.cloneNode();
+    panel.style.setProperty('--latitude', `${51 - row * 34}deg`);
+    panel.style.setProperty('--longitude', `${360 * (column + (row % 2) / 2) / count}deg`);
+    worldPlanet.append(panel);
+  }
+});
+
+let angle = 0;
+let dragX = null;
+let paused = reducedMotion.matches;
+let worldFrame = 0;
+let previousTime = 0;
+let worldVisible = false;
+
+function renderWorld() {
+  worldPlanet.style.setProperty('--spin', `${angle}deg`);
+}
+
+function spinWorld(time) {
+  if (previousTime) angle = (angle + Math.min(time - previousTime, 40) * .018) % 360;
+  previousTime = time;
+  renderWorld();
+  worldFrame = requestAnimationFrame(spinWorld);
+}
+
+function syncWorld() {
+  const spinning = worldVisible && !paused && dragX === null;
+  if (spinning && !worldFrame) worldFrame = requestAnimationFrame(spinWorld);
+  if (!spinning && worldFrame) {
+    cancelAnimationFrame(worldFrame);
+    worldFrame = 0;
+    previousTime = 0;
+  }
+  worldToggle.textContent = paused ? 'Reanudar giro' : 'Pausar giro';
+  worldToggle.setAttribute('aria-pressed', String(paused));
+}
+
+new IntersectionObserver(([entry]) => {
+  worldVisible = entry.isIntersecting;
+  syncWorld();
+}).observe(worldStage);
+
+worldToggle.addEventListener('click', () => {
+  paused = !paused;
+  syncWorld();
+});
+reducedMotion.addEventListener('change', (event) => {
+  paused = event.matches;
+  syncWorld();
+});
+
+document.querySelector('#world-left').addEventListener('click', () => {
+  angle -= 36;
+  renderWorld();
+});
+document.querySelector('#world-right').addEventListener('click', () => {
+  angle += 36;
+  renderWorld();
+});
+worldStage.addEventListener('pointerdown', (event) => {
+  if (!event.isPrimary || event.button !== 0) return;
+  dragX = event.clientX;
+  worldStage.setPointerCapture(event.pointerId);
+  syncWorld();
+});
+worldStage.addEventListener('pointermove', (event) => {
+  if (!event.isPrimary || dragX === null) return;
+  angle += (event.clientX - dragX) * .65;
+  dragX = event.clientX;
+  renderWorld();
+});
+worldStage.addEventListener('lostpointercapture', () => {
+  dragX = null;
+  syncWorld();
+});
 
 const board = document.querySelector('#memory-board');
 const memoryStatus = document.querySelector('#memory-status');
