@@ -85,6 +85,20 @@ figcaption span, .signature span { color: var(--berry); }
 .letter h2 { font-size: clamp(2rem, 5vw, 3rem); font-style: italic; font-weight: 400; margin: 0; }
 .signature { font-size: 1.35rem; font-style: italic; margin-bottom: 0; }
 
+.gallery { margin-top: clamp(4rem, 10vw, 8rem); }
+.gallery h2 { text-align: center; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 400; color: var(--berry); }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr)); gap: clamp(.6rem, 2vw, 1.3rem); }
+.gallery-grid a { display: block; padding: .35rem; background: var(--paper); box-shadow: 0 .3rem 1rem #67203d24; transition: transform .2s; }
+.gallery-grid a:hover { transform: translateY(-4px) rotate(-2deg); }
+.gallery-grid img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+
+#viewer { max-width: min(94vw, 54rem); padding: 1rem; border: 0; border-radius: .8rem; background: var(--paper); color: var(--ink); }
+#viewer::backdrop { background: #260f20df; }
+#viewer form { display: flex; justify-content: flex-end; margin-bottom: .6rem; }
+#viewer img { display: block; width: 100%; height: min(68svh, 42rem); object-fit: contain; }
+#viewer nav { display: flex; justify-content: space-between; align-items: center; gap: .5rem; margin-top: .8rem; }
+#viewer button { padding: .55rem .85rem; }
+
 #hearts { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
 .heart {
   position: absolute;
