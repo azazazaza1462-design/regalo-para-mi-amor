@@ -6,8 +6,9 @@
   <meta name="description" content="Un detalle para la mejor novia del mundo.">
   <meta name="robots" content="noindex">
   <title>Para ti, mi amor</title>
-  <link rel="stylesheet" href="style.css?v=2">
-  <script src="script.js?v=2" defer></script>
+  <meta name="theme-color" content="#120c22">
+  <link rel="stylesheet" href="style.css?v=3">
+  <script src="script.js?v=3" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -24,12 +25,24 @@
         <p class="dedication">Para ti, mi amor</p>
         <h1 id="title">La mejor novia <em>del mundo.</em></h1>
         <p class="message">Solo quería recordarte lo mucho que te amo y lo orgulloso que estoy de ti.</p>
-        <button type="button" id="open-letter" aria-controls="letter" aria-expanded="false">Abre mi cartita <span aria-hidden="true">♥</span></button>
+        <div class="cover-actions">
+          <button type="button" id="open-letter" aria-controls="letter" aria-expanded="false">Abre mi cartita <span aria-hidden="true">♥</span></button>
+          <a href="#musica">♫ Escuchar nuestra canción</a>
+        </div>
       </div>
-      <figure class="photo tilt">
-        <img src="assets/nosotros.jpeg" width="720" height="1280" alt="Nos abrazamos frente a un espejo.">
-        <figcaption>Tú y yo <span aria-hidden="true">♡</span></figcaption>
-      </figure>
+      <div class="cover-scene">
+        <span class="cover-orbit" aria-hidden="true"></span>
+        <img class="cover-snapshot snapshot-left" src="assets/recuerdo-1.jpeg" alt="" aria-hidden="true">
+        <img class="cover-snapshot snapshot-right" src="assets/recuerdo-23.jpeg" alt="" aria-hidden="true">
+        <div class="cover-float">
+          <figure class="photo tilt">
+            <img src="assets/nosotros.jpeg" width="720" height="1280" alt="Nos abrazamos frente a un espejo.">
+            <figcaption>Tú y yo <span aria-hidden="true">♡</span></figcaption>
+          </figure>
+        </div>
+        <span class="cover-spark spark-one" aria-hidden="true">✦</span>
+        <span class="cover-spark spark-two" aria-hidden="true">✦</span>
+      </div>
     </section>
     <section class="letter" id="letter" hidden aria-labelledby="letter-title">
       <h2 id="letter-title" tabindex="-1">Mi amor,</h2>
