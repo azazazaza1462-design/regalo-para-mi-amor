@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Un detalle para la mejor novia del mundo.">
+  <meta name="robots" content="noindex">
+  <title>Para ti, mi amor</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main>
+    <section class="gift" aria-labelledby="title">
+      <div class="intro">
+        <p class="dedication">Para ti, mi amor</p>
+        <h1 id="title">La mejor novia <em>del mundo.</em></h1>
+        <p class="message">Solo quería recordarte lo mucho que te amo y lo orgulloso que estoy de ti.</p>
+        <button type="button" id="open-letter" aria-controls="letter" aria-expanded="false">Abre mi cartita <span aria-hidden="true">♥</span></button>
+      </div>
+      <figure class="photo">
+        <img src="assets/nosotros.jpeg" width="720" height="1280" alt="Nos abrazamos frente a un espejo.">
+        <figcaption>Tú y yo <span aria-hidden="true">♡</span></figcaption>
+      </figure>
+    </section>
+    <section class="letter" id="letter" hidden aria-labelledby="letter-title">
+      <h2 id="letter-title" tabindex="-1">Mi amor,</h2>
+      <p>Hoy me dieron ganas de hacerte un detalle solo porque sí. Quiero que tengas un lugarcito al que puedas volver cuando quieras acordarte de lo mucho que te quiero.</p>
+      <p>Estoy muy orgulloso de ti, de todo lo que haces y de la persona que eres. Me encanta estar a tu lado y poder decir que eres mi novia.</p>
+      <p class="signature">Te amo, mi vida. <span aria-hidden="true">♥</span></p>
+    </section>
+  </main>
+  <div id="hearts" aria-hidden="true"></div>
+</body>
+</html>
