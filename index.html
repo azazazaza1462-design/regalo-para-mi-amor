@@ -6,10 +6,18 @@
   <meta name="description" content="Un detalle para la mejor novia del mundo.">
   <meta name="robots" content="noindex">
   <title>Para ti, mi amor</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css?v=2">
+  <script src="script.js?v=2" defer></script>
 </head>
 <body>
+  <header class="site-header">
+    <a class="brand" href="#">Tú y yo <span aria-hidden="true">♥</span></a>
+    <nav aria-label="Secciones">
+      <a href="#recuerdos">Álbum</a>
+      <a href="#memorama">Memorama</a>
+      <a href="#musica">Música</a>
+    </nav>
+  </header>
   <main>
     <section class="gift" aria-labelledby="title">
       <div class="intro">
@@ -18,7 +26,7 @@
         <p class="message">Solo quería recordarte lo mucho que te amo y lo orgulloso que estoy de ti.</p>
         <button type="button" id="open-letter" aria-controls="letter" aria-expanded="false">Abre mi cartita <span aria-hidden="true">♥</span></button>
       </div>
-      <figure class="photo">
+      <figure class="photo tilt">
         <img src="assets/nosotros.jpeg" width="720" height="1280" alt="Nos abrazamos frente a un espejo.">
         <figcaption>Tú y yo <span aria-hidden="true">♡</span></figcaption>
       </figure>
@@ -29,8 +37,20 @@
       <p>Estoy muy orgulloso de ti, de todo lo que haces y de la persona que eres. Me encanta estar a tu lado y poder decir que eres mi novia.</p>
       <p class="signature">Te amo, mi vida. <span aria-hidden="true">♥</span></p>
     </section>
-    <section class="gallery" aria-labelledby="gallery-title">
+    <section class="music" id="musica" aria-labelledby="music-title">
+      <div>
+        <h2 id="music-title">Una canción para acompañarnos</h2>
+        <p>The Fray · You Found Me</p>
+        <button type="button" id="play-music" aria-controls="music-player">Reproducir video</button>
+        <a class="music-link" href="https://www.youtube.com/watch?v=jFg_8u87zT0" target="_blank" rel="noopener">Abrir en YouTube</a>
+      </div>
+      <div id="music-player" hidden></div>
+    </section>
+    <section class="gallery" id="recuerdos" aria-labelledby="gallery-title">
       <h2 id="gallery-title">Nuestros recuerdos</h2>
+      <div class="album-actions">
+        <button type="button" id="random-photo">Ver un recuerdo al azar</button>
+      </div>
       <div class="gallery-grid">
         <a href="assets/recuerdo-1.jpeg" aria-label="Ver foto 1"><img src="assets/recuerdo-1.jpeg" alt="" loading="lazy" decoding="async"></a>
         <a href="assets/recuerdo-2.jpeg" aria-label="Ver foto 2"><img src="assets/recuerdo-2.jpeg" alt="" loading="lazy" decoding="async"></a>
@@ -56,6 +76,13 @@
         <a href="assets/recuerdo-22.jpeg" aria-label="Ver foto 22"><img src="assets/recuerdo-22.jpeg" alt="" loading="lazy" decoding="async"></a>
         <a href="assets/recuerdo-23.jpeg" aria-label="Ver foto 23"><img src="assets/recuerdo-23.jpeg" alt="" loading="lazy" decoding="async"></a>
       </div>
+    </section>
+    <section class="memory" id="memorama" aria-labelledby="memory-title">
+      <h2 id="memory-title">Memorama de nosotros</h2>
+      <p>Voltea dos tarjetas y encuentra las fotos que hacen pareja.</p>
+      <p id="memory-status" role="status"></p>
+      <div id="memory-board" aria-label="Tarjetas del memorama"></div>
+      <button type="button" id="reset-memory">Barajar de nuevo</button>
     </section>
   </main>
   <dialog id="viewer" aria-label="Nuestros recuerdos">
